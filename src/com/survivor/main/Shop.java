@@ -39,7 +39,7 @@ public class Shop extends MouseAdapter{
 		g.drawRect(400, 100, 100, 80);
 		
 		g.drawString("SCORE: " + hud.getScore(), Game.WIDTH/2-50, 300);
-		g.drawString("Press Sace to go Back" + hud.getScore(), Game.WIDTH/2-50, 330);
+		g.drawString("Press Sace to go Back", Game.WIDTH/2-50, 330);
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -72,5 +72,4 @@ public class Shop extends MouseAdapter{
 			}
 		}
 	}
-	
 }

@@ -37,7 +37,7 @@ public class HardEnemy extends GameObject{
 		if(x <= 0 || x >= Game.WIDTH - 27) {
 			velX *= -1;
 		}
-		//handler.addObject(new Trail(x, y, ID.Trail, Color.magenta, 16, 16, 0.05f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, Color.magenta, 16, 16, 0.05f, handler, enemyImage));
 	}
 	
 	public void render(Graphics g) {

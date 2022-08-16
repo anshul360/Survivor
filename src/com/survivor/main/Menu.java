@@ -25,16 +25,8 @@ public class Menu extends MouseAdapter {
 		int mx = e.getX();
 		int my = e.getY();
 		boolean clicked = true;
-		//System.out.println("mx: " + mx);
-		//System.out.println("my: " + my);
 		//play
 		if(mouseOver(mx, my, 210, 150, 200, 64) && game.gameState == Game.STATE.Menu) {
-			//game.gameState = Game.STATE.Game;
-			//handler.clearAll();
-			//handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
-			//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 27), r.nextInt(Game.HEIGHT - 52), ID.BasicEnemy, handler));
-			//hud.setLevel(1);
-			//hud.setScore(0);
 			game.gameState = Game.STATE.Select;
 		}
 		//help
@@ -54,7 +46,6 @@ public class Menu extends MouseAdapter {
 			game.gameState = Game.STATE.Game;
 			handler.clearAll();
 			handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
-			//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 27), r.nextInt(Game.HEIGHT - 52), ID.BasicEnemy, handler));
 			GameObject obj = game.diff == 0?
 					  (new BasicEnemy(r.nextInt(Game.WIDTH - 27), r.nextInt(Game.HEIGHT - 52), ID.BasicEnemy, handler)):
 					  (new HardEnemy(r.nextInt(Game.WIDTH - 27), r.nextInt(Game.HEIGHT - 52), ID.HardEnemy, handler));
@@ -64,7 +55,6 @@ public class Menu extends MouseAdapter {
 		}//Back to Menu
 		else if(mouseOver(mx, my, 210, 350, 200, 64) && game.gameState == Game.STATE.End) {
 			game.gameState = Game.STATE.Menu;
-			//handler.clearAll();
 		} 
 		//select - normal
 		else if(mouseOver(mx, my, 210, 150, 200, 64) && game.gameState == Game.STATE.Select) {
@@ -75,7 +65,6 @@ public class Menu extends MouseAdapter {
 			hud.setLevel(1);
 			hud.setScore(0);
 			game.diff = 0;
-			//game.gameState = Game.STATE.Select;
 		}
 		//select - Hard
 		else if(mouseOver(mx, my, 210, 250, 200, 64) && game.gameState == Game.STATE.Select) {
@@ -121,8 +110,10 @@ public class Menu extends MouseAdapter {
 		Font font3 = new Font("ariel", 1, 20);
 		if(game.gameState == Game.STATE.Menu) {
 			g.setFont(font);
-			g.setColor(Color.white);
-			g.drawString("WAVE", 230, 70);
+			FontMetrics metrics = g.getFontMetrics(font);
+			int titleX = (Game.WIDTH - metrics.stringWidth("SURVIVOR"))/2;
+			g.setColor(Color.getHSBColor(038f, 0.67f, 1.0f));
+			g.drawString("SURVIVOR", titleX-15, 70);
 			
 			g.setFont(font2);
 			g.setColor(Color.green);
@@ -141,10 +132,11 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 064);
 		} else if(game.gameState == Game.STATE.Help) {
 			g.setFont(font);
-			g.setColor(Color.white);
-			g.drawString("Help", 245, 70);
+			g.setColor(Color.getHSBColor(038f, 0.67f, 1.0f));
+			g.drawString("HELP", 245, 70);
 			
 			g.setFont(font3);
+			g.setColor(Color.white);
 			g.drawString("Use WASD keys to move player and dodge enemies!!!", 65, 170);
 			
 			g.setFont(font2);
@@ -154,8 +146,8 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 064);
 		} else if(game.gameState == Game.STATE.End) {
 			g.setFont(font);
-			g.setColor(Color.white);
-			g.drawString("Game Over", 160, 70);
+			g.setColor(Color.getHSBColor(038f, 0.67f, 1.0f));
+			g.drawString("GAME OVER", 155, 70);
 			
 			g.setFont(font3);
 			FontMetrics metrics3 = g.getFontMetrics(font3);
@@ -177,7 +169,7 @@ public class Menu extends MouseAdapter {
 			g.drawRect(210, 350, 200, 064);
 		} else if(game.gameState == Game.STATE.Select) {
 			g.setFont(font);
-			g.setColor(Color.white);
+			g.setColor(Color.getHSBColor(038f, 0.67f, 1.0f));
 			g.drawString("SELECT DIFFICULTY", 70, 70);
 			
 			g.setFont(font2);

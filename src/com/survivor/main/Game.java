@@ -39,7 +39,11 @@ public class Game extends Canvas implements Runnable{
 	public static BufferedImage sprite;
 	
 	public Game() {
+		r = new Random();
 		handler = new Handler();
+		if(gameState != STATE.Game) {
+			addParticles();
+		}
 		hud = new HUD();
 		shop = new Shop(handler, hud);
 		spawner = new Spawn(handler, hud, this);
@@ -47,30 +51,20 @@ public class Game extends Canvas implements Runnable{
 		
 		AudioPlayer.load();
 		AudioPlayer.getMusic("music1").loop();
-		//AudioPlayer.getMusic("music2").loop();
 		
 		this.addKeyListener(new KeyInput(handler, this));
 		this.addMouseListener(menu);
 		this.addMouseListener(shop);
 		
-		new Window(WIDTH, HEIGHT, "A New Game!", this);
+		new Window(WIDTH, HEIGHT, "Survivor!", this);
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		sprite = loader.loadImage("/sprite.png");
 		
-		r = new Random();
-		
-		/*for(int i = 0; i < 50; i++) {
-			handler.addObject(new Player(0, 0, ID.Player));
-		}*/
 		if(gameState == STATE.Game) {
 			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
 			handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 27), r.nextInt(HEIGHT - 52), ID.BasicEnemy, handler));
-		} else {
-			addParticles();
 		}
-		//handler.addObject(new EnemyBoss(WIDTH/2-46, -100, ID.EnemyBoss, handler));
-		
 	}
 	
 	public synchronized void start() {

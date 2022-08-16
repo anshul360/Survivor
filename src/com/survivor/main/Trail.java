@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class Trail extends GameObject {
 	
@@ -12,8 +13,9 @@ public class Trail extends GameObject {
 	private Handler handler;
 	private Color color;
 	private int width, height;
+	private BufferedImage img;
 	
-	public Trail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
+	/*public Trail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
 		// TODO Auto-generated constructor stub
 		this.color = color;
@@ -21,6 +23,17 @@ public class Trail extends GameObject {
 		this.width = width;
 		this.height = height;
 		this.life = life;
+	}*/
+	
+	public Trail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler, BufferedImage img) {
+		super(x, y, id);
+		// TODO Auto-generated constructor stub
+		this.color = color;
+		this.handler = handler;
+		this.width = width;
+		this.height = height;
+		this.life = life;
+		this.img = img;
 	}
 
 	@Override
@@ -38,8 +51,12 @@ public class Trail extends GameObject {
 		// TODO Auto-generated method stub
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setComposite(makeTransparent(alpha));
-		g.setColor(color);
-		g.fillRect((int)x, (int)y, width, height);
+		if(img != null) {
+			g.drawImage(img, (int)x, (int)y, null);
+		} else {
+			g.setColor(color);
+			g.fillRect((int)x, (int)y, width, height);
+		}
 		g2d.setComposite(makeTransparent(1));
 	}
 	

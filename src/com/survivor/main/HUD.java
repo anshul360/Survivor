@@ -31,7 +31,7 @@ public class HUD {
 		g.setFont(font);
 		g.drawString("Score: " + score, 15, 64);
 		g.drawString("Level: " + level, 15, 80);
-		g.drawString("Space for Shop", 15, 94);
+		g.drawString("Press Space for Shop", 15, 94);
 	}
 	
 	public void setScore(int score) {
